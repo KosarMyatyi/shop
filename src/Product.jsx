@@ -4,6 +4,8 @@ import cartWhite from './assets/img/cartWhite.svg'
 import rating from './assets/img/rating.svg'
 import arrowBack from './assets/img/arrowBack.svg'
 import { useParams, Link } from "react-router-dom"
+import { Reviews } from "./Reviews"
+
 
 
 export const Product = () => {
@@ -47,7 +49,7 @@ export const Product = () => {
                     </button>
                 </div>
             </div>
-
+            <Reviews />
         </div>
     )
 }
