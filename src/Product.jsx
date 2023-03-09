@@ -11,6 +11,7 @@ import { Reviews } from "./Reviews"
 export const Product = () => {
     const [product, setProduct] = useState(null)
     const params = useParams()
+    const [isProductInCart, setIsProductIncart] = useState(false)
 
     useEffect(() => {
         axios
@@ -20,6 +21,13 @@ export const Product = () => {
     if (product === null) {
         return <h2>Page is Loading...</h2>
     }
+
+
+    const addProductToCartHandler = () => {
+        alert('Товар успешно добавлен в корзину')
+        setIsProductIncart(true)
+    }
+
     return (
         <div>
             <div className="arrowBack">
@@ -43,9 +51,9 @@ export const Product = () => {
                         <p>{product.category}</p>
                     </div>
                     <p className="description">{product.description}</p>
-                    <button>
+                    <button onClick={addProductToCartHandler} >
                         <img src={cartWhite} alt="" />
-                        Add to cart
+                        {isProductInCart ? 'Go to cart' : 'Add to cart'}
                     </button>
                 </div>
             </div>

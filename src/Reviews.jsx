@@ -3,6 +3,28 @@ import avatarIcon from './assets/img/avatarIcon.svg'
 
 
 export const Reviews = () => {
+
+    const [currentReview, setCurrentReview] = useState('')
+
+    const currentReviewHandler = (e) => {
+        let newValue = e.currentTarget.value
+        setCurrentReview(newValue)
+        if (currentReviewHandler === newValue) {
+            return setCurrentReview('')
+        }
+    }
+
+    const addReviewHandler = () => {
+        const newReview = {
+            author: 'Jane Cooper',
+            title: 'Amazing Product',
+            text: currentReview,
+            date: '05/23/2021',
+            rating: 5
+        }
+        setReviews([newReview, ...reviews])
+    }
+
     const [reviews, setReviews] = useState([
         {
             author: 'Jane Cooper',
@@ -20,31 +42,16 @@ export const Reviews = () => {
         },
     ])
 
-    const [currentReview, setCurrentReview] = useState('')
-
-    const currentReviewHandler = (e) => {
-        let newValue = e.currentTarget.value
-        setCurrentReview(newValue)
-    }
-
-    const addReviewHandler = () => {
-        const newReview = {
-            author: 'Jane Cooper',
-            title: 'Amazing Product',
-            text: currentReview,
-            date: '05/23/2021',
-            rating: 5
-        }
-        setReviews([newReview, ...reviews])
-    }
 
     return (
         <div className="review">
-            <h3>Reviews (189)</h3>
-            <textarea placeholder="Provide your text..."></textarea>
-            <button>Send review</button>
+            <h3>Reviews ({reviews.length})</h3>
+            <form className="review">
+                <textarea onChange={currentReviewHandler} placeholder="Provide your text..."></textarea>
+                <button type="reset" onClick={addReviewHandler}>Send review</button>
+            </form>
             <div>
-                {reviews.map((r, index) => {  
+                {reviews.map((r, index) => {
                     return (
                         <div key={index} className="reviewField">
                             <div className="info">
